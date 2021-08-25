@@ -26,7 +26,7 @@ namespace SportsStore.Tests
             ).AsQueryable<Product>());
             ProductController productController = new ProductController(mock.Object);
             //IEnumerable<Product> result = productController.List(2).ViewData.Model as IEnumerable<Product>;
-            ProductListViewModel result = productController.List(2).ViewData.Model as ProductListViewModel;
+            ProductsListViewModel result = productController.List(2).ViewData.Model as ProductsListViewModel;
             Product[] prodArray = result.Products.ToArray();
             Assert.True(prodArray.Length == 1);
             Assert.Equal("P5", prodArray[0].Name);
@@ -46,7 +46,7 @@ namespace SportsStore.Tests
             }).AsQueryable<Product>());
 
             ProductController controller = new ProductController(mock.Object);
-            ProductListViewModel result = controller.List(2).ViewData.Model as ProductListViewModel;
+            ProductsListViewModel result = controller.List(2).ViewData.Model as ProductsListViewModel;
             PagingInfo pagingInfo = result.PagingInfo;
             Assert.Equal(2, pagingInfo.CurrentPage);
             Assert.Equal(4, pagingInfo.ItemsPerPage);

@@ -1,4 +1,4 @@
-﻿@model ProductListViewModel
+﻿@model ProductsListViewModel
 @foreach (var p in Model.Products)
 {
     <div>
@@ -8,3 +8,6 @@
     </div>
 }
 <div page-model="@Model.PagingInfo" page-action="List"></div>
+
+<h3>@Model.PagingInfo.CurrentPage</h3>
+<h3>@Model.PagingInfo.TotalPages</h3>
