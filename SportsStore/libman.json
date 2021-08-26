@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap@4.5.3",
+      "destination": "wwwroot/bootstrap/"
+    }
+  ]
+}
