@@ -5,6 +5,9 @@
     <ti tle>Sports S tore</ti>
 </head>
 <body>
+    <div id="categories">
+        @await Component.InvokeAsync("NavigationMenu")
+    </div>
     <div>
         @RenderBody()
     </div>
