@@ -21,7 +21,7 @@ namespace SportsStore.Controllers
             View(new ProductsListViewModel
             {
                 Products = _repository.Products
-                .Where(p=>p.Category==null||p.Category==category)
+                .Where(p=> category == null||p.Category==category)
                 .OrderBy(p => p.ProductID)
                 .Skip((productPage - 1) * PageSize)
                 .Take(PageSize),
