@@ -1,23 +1,9 @@
 ﻿@model ProductsListViewModel
-    <head>
-        <meta charset="utf-8" />
-        <title>METANIT.COM</title>
-        <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="alert-success" style="margin:20px;padding:15px;height:50px; text-align:center;">Используем NPM</div>
-        <script src="/node_modules/jquery/dist/jquery.js"></script>
-        <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    </body>
 @foreach (var p in Model.Products)
 {
-    <div>
-        <h3>@p.Name</h3>
-        @p.Description
-        <h4>@p.Price.ToString("c")</h4>
-    </div>
+    @Html.Partial("ProductSummary", p);
 }
-<div page-model="@Model.PagingInfo" page-action="List"></div>
-
-<h3>@Model.PagingInfo.CurrentPage</h3>
-<h3>@Model.PagingInfo.TotalPages</h3>
+<div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-seconcdary"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>
