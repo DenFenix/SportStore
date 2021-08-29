@@ -2,14 +2,20 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <ti tle>Sports S tore</ti>
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <title>Sports Store</title>
 </head>
 <body>
-    <div id="categories">
-        @await Component.InvokeAsync("NavigationMenu")
+    <div class="navbar navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">SPORTS STORE</a>
     </div>
-    <div>
-        @RenderBody()
+    <div class="row m-1 p-1">
+         <div id="categories" class="col-3">
+             @await Component.InvokeAsync("NavigationMenu")
+        </div>
+        <div>
+            @RenderBody()
+        </div>
     </div>
 </body>
 </html>
