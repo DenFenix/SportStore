@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using SportsStore.Controllers;
 using SportsStore.Models;
@@ -78,7 +79,32 @@ namespace SportsStore.Tests
             Assert.Equal(2, prodArray.Count());
             Assert.Equal(1, prodArray[0].ProductID);
             Assert.Equal(4, prodArray[1].ProductID);
+        }
 
+        [Fact]
+        public void Generate_Category_Specific_Product_Count()
+        {
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns((new Product[]
+            {
+                 new Product{ProductID =1, Name = "P1", Category = "K2"},
+                 new Product{ProductID =2, Name = "P2", Category = "K1"},
+                 new Product{ProductID =3, Name = "P3", Category = "K1"},
+                 new Product{ProductID =4, Name = "P4", Category = "K2"},
+                 new Product{ProductID =5, Name = "P5", Category = "K1"}
+            }).AsQueryable<Product>());
+
+            ProductController controller = new ProductController(mock.Object);
+            Func<ViewResult, ProductsListViewModel> GetModel = result =>
+            result?.ViewData?.Model as ProductsListViewModel;
+
+            int? res1 = GetModel(controller.List("K1"))?.PagingInfo.TotalItems;
+            int? res2 = GetModel(controller.List("K2"))?.PagingInfo.TotalItems;
+            int? resAll = GetModel(controller.List(null))?.PagingInfo.TotalItems;
+
+            Assert.Equal(3,res1);
+            Assert.Equal(2, res2);
+            Assert.Equal(5, resAll);
         }
     }
 }
