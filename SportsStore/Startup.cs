@@ -57,14 +57,21 @@ namespace SportsStore
                     );
                 routes.MapRoute(
                     name: null,
-                    template: "{controller=Product}/{action=List}/Page{productPage:int}");
+                    template: "Page{productPage:int}",
+                    defaults: new { controller = "Product", action = "List", productPage = 1 }
+                    );
                 routes.MapRoute(
                     name: null,
                     template: "{controller=Product}/{action=List}/{category}"
                     );
                 routes.MapRoute(
                     name: null,
-                    template: "{controller=Product}/{action=List}/{id?}"
+                    template: "",
+                    defaults: new { controller = "Product", action = "List", productPage = 1 }
+                    );
+                routes.MapRoute(
+                    name: null,
+                    template: "{controller}/{action}/{id?}"
                     );
             });
             SeedData.EnsurePopulated(app);
